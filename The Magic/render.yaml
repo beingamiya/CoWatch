@@ -2,6 +2,7 @@ services:
   - type: web
     name: CoWatch
     env: node
+    rootDir: The Magic
     buildCommand: npm install
     startCommand: node server.js
     envVars:
