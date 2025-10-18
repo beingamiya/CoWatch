@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoWatch:An Amiya's Gen Ai Venture</title>
+    <link rel="icon" type="image/png" href="Brand.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!--Main Container-->
+    <div class="container">
+        <header class="header">
+            <div class="nav-brand">
+                <h1><i class="fa-regular fa-clone"></i>CoWatch</h1>
+            </div>
+            
+            <nav class="nav-menu" id="navMenu">
+                        <ul class="nav-list">
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link active" data-section="home">
+                                    <i class="fa-solid fa-landmark"></i>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link room-nav-link">
+                                    <i class="fa-solid fa-gopuram"></i>
+                                    <span class="room-id-display">Not Connected</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link users-nav-link">
+                                    <i class="fa-solid fa-user-doctor"></i>
+                                    <span class="user-count-display">Users: 0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+            
+            <div class="header-controls">
+                <button id="themeToggle" class="theme-toggle" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" title="Toggle Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div id="roomSetup" class="room-setup">
+                <div class="setup-card">
+    <h2 class="section-title">
+  <i class="fa-regular fa-circle-play"></i> Start or Join a CoWatch Room
+</h2>
+
+    
+    <div class="input-group">
+        <span class="input-group-text">
+        
+    </span>
+    <input type="text" id="usernameInput" placeholder="Name" maxlength="20" class="form-control">
+        <input type="text" id="roomIdInput" placeholder="Room ID (leave blank to create new)" class="form-control">
+        
+        <button id="joinRoomBtn" class="btn btn-primary">
+            <i class="fa-regular fa-building"></i> Launch CoWatch Room
+        </button>
+    </div>
+</div>
+
+</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="mediaSection" class="media-section hidden">
+                <div class="player-container">
+                    <div class="video-container">
+                        <video id="directPlayer" class="media-player" controls>
+                            Your browser does not support the video tag.
+                        </video>
+
+                        <iframe 
+                            id="youtubePlayer" 
+                            class="media-player hidden" 
+                            src="" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            enablejsapi="1"
+                            modestbranding="1"
+                            rel="0"
+                            fs="1">
+                        </iframe>
+
+                        <div class="video-overlay">
+                            <div class="sync-status" id="syncStatus">
+                                <i class="fa-regular fa-chart-bar"></i> Synced
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media-controls">
+                        <div class="video-input-section">
+
+    <!-- File Upload -->
+    <div class="file-inputs">
+        <label for="videoFile" class="btn btn-primary">
+            <i class="fa-solid fa-upload"></i> Upload Video
+            <input type="file" id="videoFile" accept="video/*" hidden>
+        </label>
+    </div>
+
+    <!-- URL Input -->
+    <div class="url-inputs">
+        <input type="url" id="videoUrl" placeholder="Paste YouTube or Video URL" class="form-control">
+        <button id="loadVideoUrl" class="btn btn-secondary">
+            <i class="fa-solid fa-link"></i> Import
+        </button>
+    </div>
+
+</div>
+
+                    </div>
+                </div>
+
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h3><i class="fa-regular fa-comments"></i> Chat</h3>
+                        <div class="online-users" id="onlineUsers"></div>
+                        <button id="chatMinimize" class="chat-minimize" title="Minimize Chat">
+                            <i class="fa-solid fa-down-left-and-up-right-to-center"></i>
+                        </button>
+                    </div>
+                    <div class="chat-messages" id="chatMessages"></div>
+                    <div class="chat-input">
+                        <input type="text" id="messageInput" placeholder="Type a message..." maxlength="200">
+                        <button id="sendMessage" class="btn btn-primary">
+                            <i class="fa-solid fa-reply"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="connection-status" id="connectionStatus">
+        <i class="fas fa-wifi"></i> Connecting...
+    </div>
+
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fa-regular fa-clone"></i> CoWatch</h3>
+                <p>Made with <i class="fa-regular fa-heart"></i> by AMIYA and Trae.ai</p>
+            </div>
+            <div class="footer-section">
+                <h4>Features</h4>
+                <ul>
+                    <li>Real-time sync</li>
+                    <li>Chat while watching</li>
+                    <li>Support only YouTube and Local videos</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://x.com/Yasnuggle" target="_blank" rel="noopener" title="Twitter" class="external-link"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/amiya-panigrahi/" target="_blank" rel="noopener" title="LinkedIn" class="external-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/beingamiya" target="_blank" rel="noopener" title="GitHub" class="external-link"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p><i class="fa-solid fa-trademark"></i> <span id="currentYear"></span> CoWatch.an AMIYA'S GEN AI VENTURE  All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
