@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoWatch:An Amiya's Gen Ai Venture</title>
+    <title>CoWatch.com</title>
     <link rel="icon" type="image/png" href="Brand.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mode-selection.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- YouTube IFrame API - Load BEFORE other scripts -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body>
-    <!--Main Container-->
     <div class="container">
         <header class="header">
             <div class="nav-brand">
@@ -17,27 +23,27 @@
             </div>
             
             <nav class="nav-menu" id="navMenu">
-                        <ul class="nav-list">
-                            <li class="nav-item">
-                                <a href="index.html" class="nav-link active" data-section="home">
-                                    <i class="fa-solid fa-landmark"></i>
-                                    <span>Home</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link room-nav-link">
-                                    <i class="fa-solid fa-gopuram"></i>
-                                    <span class="room-id-display">Not Connected</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link users-nav-link">
-                                    <i class="fa-solid fa-user-doctor"></i>
-                                    <span class="user-count-display">Users: 0</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active" data-section="home">
+                            <i class="fa-solid fa-landmark"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link room-nav-link">
+                            <i class="fa-solid fa-volleyball"></i>
+                            <span class="room-id-display">Not Connected</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link users-nav-link">
+                            <i class="fa-solid fa-user-tie"></i>
+                            <span class="user-count-display">Users: 0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
             
             <div class="header-controls">
                 <button id="themeToggle" class="theme-toggle" title="Toggle Dark Mode">
@@ -50,32 +56,95 @@
         </header>
 
         <main class="main-content">
-            <div id="roomSetup" class="room-setup">
-                <div class="setup-card">
-    <h2 class="section-title">
-  <i class="fa-regular fa-circle-play"></i> Start or Join a CoWatch Room
-</h2>
+            <!-- 🎯 NEW: Mode Selection Screen -->
+            <div id="modeSelection" class="mode-selection-screen">
+                <div class="mode-content">
+                    <div class="mode-cards">
+                        <!-- Couple Mode Card -->
+                        <div class="mode-card couple-mode" onclick="selectMode('couple')">
+                            <div class="mode-badge">Max 2 Users</div>
+                            <div class="mode-icon-container">
+                                <i class="fa-solid fa-heart mode-icon"></i>
+                            </div>
+                            <h2 class="mode-card-title">Couple Mode</h2>
+                            <p class="mode-description">
+                                An intimate watching experience designed for two. Perfect for date nights and quality time together.
+                            </p>
+                            <div class="mode-features">
+                                <div class="feature-item">
+                                    <i class="fa-solid fa-lock"></i>
+                                    <span>Private & Secure</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fa-solid fa-video"></i>
+                                    <span>Perfect Sync</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fa-solid fa-comment"></i>
+                                    <span>Private Chat</span>
+                                </div>
+                            </div>
+                            <button class="mode-select-btn">
+                                Start Couple Mode
+                            </button>
+                        </div>
 
-    
-    <div class="input-group">
-        <span class="input-group-text">
-        
-    </span>
-    <input type="text" id="usernameInput" placeholder="Name" maxlength="20" class="form-control">
-        <input type="text" id="roomIdInput" placeholder="Room ID (leave blank to create new)" class="form-control">
-        
-        <button id="joinRoomBtn" class="btn btn-primary">
-            <i class="fa-regular fa-building"></i> Launch CoWatch Room
-        </button>
-    </div>
-</div>
-
-</button>
-
+                        <!-- Watch Party Mode Card -->
+                        <div class="mode-card party-mode" onclick="selectMode('party')">
+                            <div class="mode-badge party">Max 50 Users</div>
+                            <div class="mode-icon-container">
+                                <i class="fa-solid fa-user-group mode-icon"></i>
+                            </div>
+                            <h2 class="mode-card-title">Watch Party</h2>
+                            <p class="mode-description">
+                                Host epic watch parties with friends and family. Share the experience with everyone you love.
+                            </p>
+                            <div class="mode-features">
+                                <div class="feature-item">
+                                    <i class="fa-solid fa-users"></i>
+                                    <span>Up to 50 People</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fa-solid fa-video"></i>
+                                    <span>Real-time Sync</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fa-solid fa-comments"></i>
+                                    <span>Group Chat</span>
+                                </div>
+                            </div>
+                            <button class="mode-select-btn">
+                                Create Watch Party
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Original Room Setup -->
+            <div id="roomSetup" class="room-setup hidden">
+                <div class="setup-card">
+                    <h2 class="section-title">
+                        
+                        <span id="modeTitle">Start or Join a CoWatch Room</span>
+                    </h2>
+                    
+                    <div class="input-group">
+                        <input type="text" id="usernameInput" placeholder="Enter your name" maxlength="20" class="form-control">
+                        <input type="text" id="roomIdInput" placeholder="Room ID (leave blank to create new)" class="form-control">
+                        
+                        <button id="joinRoomBtn" class="btn btn-primary">
+                            <i class="fa-solid fa-bolt"></i> Launch CoWatch Room
+                        </button>
+
+                        <button id="backToModeBtn" class="btn btn-secondary" onclick="backToModeSelection()">
+                            <i class="fa-solid fa-arrow-left"></i> Back to Mode Selection
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Media Section (unchanged) -->
             <div id="mediaSection" class="media-section hidden">
                 <div class="player-container">
                     <div class="video-container">
@@ -83,18 +152,8 @@
                             Your browser does not support the video tag.
                         </video>
 
-                        <iframe 
-                            id="youtubePlayer" 
-                            class="media-player hidden" 
-                            src="" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen
-                            enablejsapi="1"
-                            modestbranding="1"
-                            rel="0"
-                            fs="1">
-                        </iframe>
+                        <!-- YouTube Player (API will create iframe here) -->
+                        <div id="youtubePlayer" class="media-player hidden"></div>
 
                         <div class="video-overlay">
                             <div class="sync-status" id="syncStatus">
@@ -105,25 +164,20 @@
 
                     <div class="media-controls">
                         <div class="video-input-section">
+                            <div class="file-inputs">
+                                <label for="videoFile" class="btn btn-primary">
+                                    <i class="fa-solid fa-upload"></i> Upload Video
+                                    <input type="file" id="videoFile" accept="video/*" hidden>
+                                </label>
+                            </div>
 
-    <!-- File Upload -->
-    <div class="file-inputs">
-        <label for="videoFile" class="btn btn-primary">
-            <i class="fa-solid fa-upload"></i> Upload Video
-            <input type="file" id="videoFile" accept="video/*" hidden>
-        </label>
-    </div>
-
-    <!-- URL Input -->
-    <div class="url-inputs">
-        <input type="url" id="videoUrl" placeholder="Paste YouTube or Video URL" class="form-control">
-        <button id="loadVideoUrl" class="btn btn-secondary">
-            <i class="fa-solid fa-link"></i> Import
-        </button>
-    </div>
-
-</div>
-
+                            <div class="url-inputs">
+                                <input type="url" id="videoUrl" placeholder="Paste YouTube or Video URL" class="form-control">
+                                <button id="loadVideoUrl" class="btn btn-secondary">
+                                    <i class="fa-solid fa-link"></i> Import
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -147,20 +201,57 @@
         </main>
 
         <div class="connection-status" id="connectionStatus">
-        <i class="fas fa-wifi"></i> Connecting...
-    </div>
-
-
+            <i class="fas fa-wifi"></i> Connecting...
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        // Global mode storage
+        let selectedWatchMode = null;
+        let maxUsersAllowed = 50;
+
+        function selectMode(mode) {
+            selectedWatchMode = mode;
+            maxUsersAllowed = mode === 'couple' ? 2 : 50;
+            
+            // Store in localStorage
+            localStorage.setItem('watchMode', mode);
+            localStorage.setItem('maxUsers', maxUsersAllowed);
+            
+            // Hide mode selection, show room setup
+            document.getElementById('modeSelection').classList.add('hidden');
+            document.getElementById('roomSetup').classList.remove('hidden');
+            
+            // Update title based on mode
+            const modeTitle = document.getElementById('modeTitle');
+            if (mode === 'couple') {
+                modeTitle.innerHTML = 'Start Your Private Room';
+            } else {
+                modeTitle.innerHTML = 'Create Your Party Room';
+            }
+            
+            // Focus on username input
+            document.getElementById('usernameInput').focus();
+        }
+
+        function backToModeSelection() {
+            document.getElementById('roomSetup').classList.add('hidden');
+            document.getElementById('modeSelection').classList.remove('hidden');
+            
+            // Clear inputs
+            document.getElementById('usernameInput').value = '';
+            document.getElementById('roomIdInput').value = '';
+        }
+    </script>
     <script src="script.js"></script>
+    
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h3><i class="fa-regular fa-clone"></i> CoWatch</h3>
-                <p>Made with <i class="fa-regular fa-heart"></i> by AMIYA and Trae.ai</p>
+                <p>Coded with <i class="fa-regular fa-heart"></i> by AMIYA and powered by the magic of Open Source AI</p>
             </div>
             <div class="footer-section">
                 <h4>Features</h4>
@@ -173,14 +264,14 @@
             <div class="footer-section">
                 <h4>Connect</h4>
                 <div class="social-links">
-                    <a href="https://x.com/Yasnuggle" target="_blank" rel="noopener" title="Twitter" class="external-link"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com/in/amiya-panigrahi/" target="_blank" rel="noopener" title="LinkedIn" class="external-link"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/beingamiya" target="_blank" rel="noopener" title="GitHub" class="external-link"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/Yasnuggle" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/amiya-panigrahi/" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/beingamiya" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p><i class="fa-solid fa-trademark"></i> <span id="currentYear"></span> CoWatch.an AMIYA'S GEN AI VENTURE  All rights reserved.</p>
+            <p><i class="fa-solid fa-trademark"></i> <span id="currentYear"></span> CoWatch. an AMIYA'S GEN AI VENTURE All rights reserved.</p>
         </div>
     </footer>
 </body>

@@ -2,9 +2,14 @@ services:
   - type: web
     name: CoWatch
     env: node
+<<<<<<< HEAD:The Magic/render.yaml
     rootDir: The Magic
     buildCommand: npm install
     startCommand: node server.js
+=======
+    buildCommand: cd "The Magic" && npm install
+    startCommand: cd "The Magic" && node server.js
+>>>>>>> 35b8cf3 (Improve system welcome messages and dark theme UI styling):render.yaml
     envVars:
       - key: NODE_ENV
         value: production
