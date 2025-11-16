@@ -554,18 +554,14 @@ class SyncWatch {
         this.addChatMessage('System', `${username} loaded a video`, 'system');
     }
 
-    sendChatMessage() {
-        const message = this.messageInput.value.trim();
-        if (!message) return;
-        
-        this.addChatMessage(this.username, message, 'own');
-        this.messageInput.value = '';
-        
-        this.socket.emit('chat-message', {
-            roomId: this.roomId,
-            message: message
-        });
-    }
+   // send only, do not add locally
+sendChatMessage() {
+    const message = this.messageInput.value.trim();
+    if (!message) return;
+    this.socket.emit('chat-message', { roomId: this.roomId, message, username: this.username });
+    this.messageInput.value = '';
+}
+
 
     addChatMessage(username, message, type = 'other') {
         const messageDiv = document.createElement('div');
